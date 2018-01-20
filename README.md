@@ -11,15 +11,15 @@
 
 # Liste des choses à faire 
 ## Lire des données depuis les traces de l'université de Kyoto
-[x] Faire un parser permettant de transformer une ligne d'une trace en un objet Java.
-[x] Construire un processeur qui reçoit une ligne et construit une `Connection`
+- [x] Faire un parser permettant de transformer une ligne d'une trace en un objet Java.
+- [x] Construire un processeur qui reçoit une ligne et construit une `Connection`
 
 ## Exemples de chaines à implémenter
-[ ] Chaine 1 : Bande passante cumulative (Exemple demandé par Sylvain )
-[ ] Chaine 2 : Cluster en fonction des durées de connexion
-[ ] Chaîne 3 : Cluster en fonction des heures de la journée 
+- [ ] Chaine 1 : Bande passante cumulative (Exemple demandé par Sylvain )
+- [ ] Chaine 2 : Cluster en fonction des durées de connexion
+- [ ] Chaîne 3 : Cluster en fonction des heures de la journée 
 
 ## Élements importants à implémenter
-[ ] Un processeur qui reçoit les données clusterisées (Help massiva) et qui génère une image
-[ ] Un GroupProcessor K-means qui reçoit juste les connexions et les paramètres et qui génère les clusters
-[ ] ...
+- [ ] Un processeur qui reçoit les données clusterisées (Help massiva) et qui génère une image
+- [ ] Un GroupProcessor K-means qui reçoit juste les connexions et les paramètres et qui génère les clusters
+- [ ] ...
