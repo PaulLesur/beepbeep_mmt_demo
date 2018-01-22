@@ -1,4 +1,4 @@
-package ca.uqac.lif.mmt.parser.processors;
+package ca.uqac.lif.mmt.processors;
 
 import ca.uqac.lif.cep.Processor;
 import ca.uqac.lif.cep.SingleProcessor;
@@ -15,7 +15,6 @@ public class ConnectionBuilder extends SingleProcessor{
 
     protected boolean compute(Object[] inputs, Queue<Object[]> outputs) {
 
-        System.out.println(inputs[0].toString());
 
         Connection connection = Parser.parseConnection(inputs[0].toString());
 
