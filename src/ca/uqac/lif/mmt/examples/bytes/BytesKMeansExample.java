@@ -1,6 +1,7 @@
 package ca.uqac.lif.mmt.examples.bytes;
 
 import ca.uqac.lif.cep.Connector;
+import ca.uqac.lif.cep.Processor;
 import ca.uqac.lif.cep.Pullable;
 import ca.uqac.lif.cep.functions.FunctionProcessor;
 import ca.uqac.lif.cep.gnuplot.GnuplotScatterplot;
@@ -12,22 +13,25 @@ import ca.uqac.lif.cep.peg.ml.KMeansFunction;
 import ca.uqac.lif.cep.tmf.Fork;
 import ca.uqac.lif.cep.tmf.NaryToArray;
 import ca.uqac.lif.cep.tmf.Pump;
+import ca.uqac.lif.cep.tuples.MergeScalars;
 import ca.uqac.lif.cep.tuples.TupleFeeder;
 import ca.uqac.lif.mmt.functions.GetDestinationBytes;
 import ca.uqac.lif.mmt.functions.GetDuration;
 import ca.uqac.lif.mmt.functions.GetSourceBytes;
 import ca.uqac.lif.mmt.parser.Connection;
-import ca.uqac.lif.mmt.processors.BitmapJFrame;
-import ca.uqac.lif.mmt.processors.FileSourceProcessor;
-import ca.uqac.lif.mmt.processors.SetBuilderProcessor;
+import ca.uqac.lif.mmt.processors.*;
 import ca.uqac.lif.mtnp.plot.Plot;
-import ca.uqac.lif.mtnp.plot.gnuplot.Scatterplot;
+
+import ca.uqac.lif.mtnp.plot.gral.Scatterplot;
+import ca.uqac.lif.mtnp.table.Table;
+import ca.uqac.lif.mtnp.table.TempTable;
 
 import java.io.FileNotFoundException;
 
 public class BytesKMeansExample {
 
-    private static int k = 10;
+    private static int k = 20;
+    private static int refreshInterval = 100;
 
     public static void main(String args[]) throws FileNotFoundException, InterruptedException {
 
@@ -44,21 +48,29 @@ public class BytesKMeansExample {
 //        Connector.connect(sourceBytes, 0, nta, Connector.TOP);
 //        Connector.connect(destinationBytes, 0, nta, Connector.BOTTOM);
 
-        TupleFeeder
-        Connector.connect(sourceBytes, 0, table, 0);
-        Connector.connect(destinationBytes, 0, table, 1);
+        PairBuilderProcessor pairBuilder = new PairBuilderProcessor();
+        Connector.connect(sourceBytes, 0, pairBuilder, 0);
+        Connector.connect(destinationBytes, 0, pairBuilder, 1);
+
+
+        SetBuilderProcessor setBuilder = new SetBuilderProcessor(k, refreshInterval);
+        Connector.connect(pairBuilder, setBuilder);
 
         KMeansFunction kmf = new KMeansFunction(k);
         FunctionProcessor fp = new FunctionProcessor(kmf);
 
-        Connector.connect(table, fp);
+        Connector.connect(setBuilder, fp);
 
 
+        MultisetToTableProcessor table = new MultisetToTableProcessor(1, "x", "y");
+        Connector.connect(fp, table);
 
-        DrawPlot draw = new DrawPlot(new ca.uqac.lif.mtnp.plot.gral.Scatterplot());
-//        draw.setImageType(Plot.ImageType.PNG);
+        Scatterplot scatterplot = new Scatterplot();
+        scatterplot.withLines(false);
+        DrawPlot draw = new DrawPlot(scatterplot);
+        draw.setImageType(Plot.ImageType.PNG);
 
-        Connector.connect(fp, draw);
+        Connector.connect(table, draw);
 
         BitmapJFrame window = new BitmapJFrame();
 
@@ -68,25 +80,33 @@ public class BytesKMeansExample {
         Connector.connect(pump,window);
 
 
+
+//
+//        Pullable p = table.getPullableOutput();
+//        while (p.hasNext()){
+//            System.out.println(p.pull());
+//            p.pull();
+//
+//        }
+
+
+
+
         window.start();
-
-
-//        SetBuilderProcessor setBuilder = new SetBuilderProcessor(k);
-//
-//
-
-//
-//
-//        Connector.connect(source, durationExtractor, setBuilder, fp);
-
-//        Pullable p = window.getPullableOutput();
 
 
         System.out.println("Displaying plot. Press Ctrl+C or close the window to end.");
         while(true){
             pump.run();
-            Thread.sleep(1000);
+//            Thread.sleep(1000);
+//            System.out.println("ERG");
         }
+
+
+
+
+
+
 
     }
 

@@ -12,11 +12,13 @@ public class SetBuilderProcessor extends SingleProcessor{
 
     private HashSet<Object> localSet;
     private int minimum;
+    private int interval;
 
-    public SetBuilderProcessor(int min) {
+    public SetBuilderProcessor(int min, int interval) {
         super(1,1);
         this.localSet = new HashSet<>();
         this.minimum = min;
+        this.interval = interval;
     }
 
     @Override
@@ -28,7 +30,7 @@ public class SetBuilderProcessor extends SingleProcessor{
 
         System.out.println();
 
-        if (this.localSet.size()>=minimum){
+        if (this.localSet.size()%interval==0){
             output.add(o);
         }
 

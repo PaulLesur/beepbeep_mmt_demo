@@ -14,6 +14,7 @@ import java.io.FileNotFoundException;
 public class DurationExample {
 
     private static int k = 5;
+    private static int refreshInterval = 5;
 
     public static void main(String args[]) throws FileNotFoundException {
 
@@ -24,7 +25,7 @@ public class DurationExample {
         FunctionProcessor durationExtractor = new FunctionProcessor(new GetDuration());
 
         // Building set, needed for K-means algorithm
-        SetBuilderProcessor setBuilder = new SetBuilderProcessor(k);
+        SetBuilderProcessor setBuilder = new SetBuilderProcessor(k, refreshInterval);
 
         // Creating K-means function
         KMeansFunction kmf = new KMeansFunction(k);
