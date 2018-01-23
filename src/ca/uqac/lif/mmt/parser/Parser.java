@@ -20,18 +20,18 @@ public class Parser {
                             splittedLine[1],
                             Integer.parseInt(splittedLine[2]),
                             Integer.parseInt(splittedLine[3]),
-                            Integer.parseInt(splittedLine[4]),
+                            Float.parseFloat(splittedLine[4]),
                             new Rate(splittedLine[5]),
                             new Rate(splittedLine[6]),
                             new Rate(splittedLine[7]),
                             Integer.parseInt(splittedLine[8]),
-                            Integer.parseInt(splittedLine[9]),
+                            Float.parseFloat(splittedLine[9]),
                             new Rate(splittedLine[10]),
                             new Rate(splittedLine[11]),
                             new Rate(splittedLine[12]),
                             new Flag(splittedLine[13]),
-                            Integer.parseInt(splittedLine[14]),
-                            Integer.parseInt(splittedLine[15]),
+                            splittedLine[14],
+                            splittedLine[15],
                             Integer.parseInt(splittedLine[16]),
                             Integer.parseInt(splittedLine[17]),
                             new IpAddress(splittedLine[18]),
@@ -44,7 +44,8 @@ public class Parser {
             );
         }
         catch(NumberFormatException nfe){
-            System.err.println("NumberFormatException");
+            nfe.printStackTrace();
+            System.out.println(line);
             return new Connection();
         }
     }

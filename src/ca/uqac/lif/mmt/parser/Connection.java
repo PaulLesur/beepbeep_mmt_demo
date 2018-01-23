@@ -8,26 +8,26 @@ public class Connection {
 
     private float   connectionDuration;
     private String service;
-    private int   sourceBytes;
-    private int   destinationBytes;
-    private int   countSameDestinationSameSource;
+    private float   sourceBytes;
+    private float   destinationBytes;
+    private Float   countSameDestinationSameSource;
     private Rate sameServiceRate;
     private Rate synErrorRateCSDSS;
     private Rate  serviceSynErrorRate;
-    private int   countSameDestination;
-    private int   countSameDestinationSameService;
+    private float   countSameDestination;
+    private float   countSameDestinationSameService;
     private Rate  sameSourcePortRate;
     private Rate synErrorRateCSD;
     private Rate  synErrorRateServiceCSD;
     private Flag connectionStatus;
-    private int intrusionType;
-    private int malwareType;
-    private int shellcodeType;
-    private int attackIndicator;
+    private String intrusionType;
+    private String malwareType;
+    private float shellcodeType;
+    private float attackIndicator;
     private IpAddress sourceIpAddress;
-    private int sourcePortNumber;
+    private float sourcePortNumber;
     private IpAddress destinationIpAddress;
-    private int destinationPortNumber;
+    private float destinationPortNumber;
     private String startTime;
     private String protocol;
 
@@ -35,7 +35,7 @@ public class Connection {
 
     }
 
-    public Connection(float connectionDuration, String service, int sourceBytes, int destinationBytes, int countSameDestinationSameSource, Rate sameServiceRate, Rate synErrorRateCSDSS, Rate serviceSynErrorRate, int countSameDestination, int countSameDestinationSameService, Rate sameSourcePortRate, Rate synErrorRateCSD, Rate synErrorRateServiceCSD, Flag connectionStatus, int intrusionType, int malwareType, int shellcodeType, int attackIndicator, IpAddress sourceIpAddress, int sourcePortNumber, IpAddress destinationIpAddress, int destinationPortNumber, String startTime, String protocol) {
+    public Connection(float connectionDuration, String service, float sourceBytes, float destinationBytes, Float countSameDestinationSameSource, Rate sameServiceRate, Rate synErrorRateCSDSS, Rate serviceSynErrorRate, float countSameDestination, float countSameDestinationSameService, Rate sameSourcePortRate, Rate synErrorRateCSD, Rate synErrorRateServiceCSD, Flag connectionStatus, String intrusionType, String malwareType, float shellcodeType, float attackIndicator, IpAddress sourceIpAddress, float sourcePortNumber, IpAddress destinationIpAddress, float destinationPortNumber, String startTime, String protocol) {
         this.connectionDuration = connectionDuration;
         this.service = service;
         this.sourceBytes = sourceBytes;
@@ -70,15 +70,15 @@ public class Connection {
         return service;
     }
 
-    public int getSourceBytes() {
+    public float getSourceBytes() {
         return sourceBytes;
     }
 
-    public int getDestinationBytes() {
+    public float getDestinationBytes() {
         return destinationBytes;
     }
 
-    public int getCountSameDestinationSameSource() {
+    public Float getCountSameDestinationSameSource() {
         return countSameDestinationSameSource;
     }
 
@@ -94,11 +94,11 @@ public class Connection {
         return serviceSynErrorRate;
     }
 
-    public int getCountSameDestination() {
+    public float getCountSameDestination() {
         return countSameDestination;
     }
 
-    public int getCountSameDestinationSameService() {
+    public float getCountSameDestinationSameService() {
         return countSameDestinationSameService;
     }
 
@@ -118,19 +118,19 @@ public class Connection {
         return connectionStatus;
     }
 
-    public int getIntrusionType() {
+    public String getIntrusionType() {
         return intrusionType;
     }
 
-    public int getMalwareType() {
+    public String getMalwareType() {
         return malwareType;
     }
 
-    public int getShellcodeType() {
+    public float getShellcodeType() {
         return shellcodeType;
     }
 
-    public int getAttackIndicator() {
+    public float getAttackIndicator() {
         return attackIndicator;
     }
 
@@ -138,7 +138,7 @@ public class Connection {
         return sourceIpAddress;
     }
 
-    public int getSourcePortNumber() {
+    public float getSourcePortNumber() {
         return sourcePortNumber;
     }
 
@@ -146,7 +146,7 @@ public class Connection {
         return destinationIpAddress;
     }
 
-    public int getDestinationPortNumber() {
+    public float getDestinationPortNumber() {
         return destinationPortNumber;
     }
 

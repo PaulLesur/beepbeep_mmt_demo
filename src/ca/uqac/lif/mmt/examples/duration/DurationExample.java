@@ -17,17 +17,22 @@ public class DurationExample {
 
     public static void main(String args[]) throws FileNotFoundException {
 
+        // Extracting data from source file
         FileSourceProcessor source = new FileSourceProcessor("./data/2006/11/20061101.txt");
 
+        //Retrieving duration for each Connection object
         FunctionProcessor durationExtractor = new FunctionProcessor(new GetDuration());
 
+        // Building set, needed for K-means algorithm
         SetBuilderProcessor setBuilder = new SetBuilderProcessor(k);
 
+        // Creating K-means function
         KMeansFunction kmf = new KMeansFunction(k);
         FunctionProcessor fp = new FunctionProcessor(kmf);
 
-
+        // Building the pipeline
         Connector.connect(source, durationExtractor, setBuilder, fp);
+
 
         Pullable p = fp.getPullableOutput();
 
