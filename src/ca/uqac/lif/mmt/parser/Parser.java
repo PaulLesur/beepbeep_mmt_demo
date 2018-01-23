@@ -4,15 +4,16 @@ import ca.uqac.lif.mmt.parser.arguments.Flag;
 import ca.uqac.lif.mmt.parser.arguments.IpAddress;
 import ca.uqac.lif.mmt.parser.arguments.Rate;
 
+/**
+ * Parser that takes a big String and return a {@link Connection} object build from this line.
+ */
 public class Parser {
 
     public Parser(){}
 
     public static Connection parseConnection(String line){
         String[] splittedLine = line.split("\t");
-
         try {
-
             return (
                     new Connection(
                             Float.parseFloat(splittedLine[0]),

@@ -1,14 +1,12 @@
-package ca.uqac.lif.mmt.chaine1;
+package ca.uqac.lif.mmt.examples.chaine1;
 
 import ca.uqac.lif.cep.GroupProcessor;
-import ca.uqac.lif.cep.Processor;
 import ca.uqac.lif.cep.functions.*;
 import ca.uqac.lif.cep.numbers.Addition;
 import ca.uqac.lif.cep.tmf.Fork;
 import ca.uqac.lif.cep.tmf.Slicer;
 import ca.uqac.lif.cep.tuples.MergeTuples;
 import ca.uqac.lif.cep.tuples.ScalarIntoTuple;
-import netp.FlowTransmitter;
 import netp.PacketSource;
 import netp.functions.GetSourceIp;
 

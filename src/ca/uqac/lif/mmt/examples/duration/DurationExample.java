@@ -1,10 +1,10 @@
-package ca.uqac.lif.mmt.duration;
+package ca.uqac.lif.mmt.examples.duration;
 
 import ca.uqac.lif.cep.Connector;
 import ca.uqac.lif.cep.Pullable;
 import ca.uqac.lif.cep.functions.FunctionProcessor;
 import ca.uqac.lif.cep.peg.ml.KMeansFunction;
-import ca.uqac.lif.mmt.processors.ExtractConnectionDuration;
+import ca.uqac.lif.mmt.functions.GetDuration;
 import ca.uqac.lif.mmt.processors.FileSourceProcessor;
 import ca.uqac.lif.mmt.processors.SetBuilderProcessor;
 
@@ -19,7 +19,7 @@ public class DurationExample {
 
         FileSourceProcessor source = new FileSourceProcessor("./data/2006/11/20061101.txt");
 
-        ExtractConnectionDuration durationExtractor = new ExtractConnectionDuration();
+        FunctionProcessor durationExtractor = new FunctionProcessor(new GetDuration());
 
         SetBuilderProcessor setBuilder = new SetBuilderProcessor(k);
 
@@ -34,6 +34,5 @@ public class DurationExample {
         while(p.hasNext()){
             System.out.println((p.pull()).toString());
         }
-
     }
 }

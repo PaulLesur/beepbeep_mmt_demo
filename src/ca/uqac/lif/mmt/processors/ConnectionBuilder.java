@@ -7,14 +7,25 @@ import ca.uqac.lif.mmt.parser.Parser;
 
 import java.util.Queue;
 
+/**
+ * Processor that takes a String and create a {@link Connection} from this String.
+ */
 public class ConnectionBuilder extends SingleProcessor{
 
+    /**
+     * This processor has 1 input and 1 output
+     */
     public ConnectionBuilder() {
         super(1, 1);
     }
 
+    /**
+     * Compute the tranformation from String to {@link Connection}. It calls a method from the {@link Parser} class.
+     * @param inputs A String
+     * @param outputs The {@link Connection} created from the input
+     * @return
+     */
     protected boolean compute(Object[] inputs, Queue<Object[]> outputs) {
-
 
         Connection connection = Parser.parseConnection(inputs[0].toString());
 

@@ -8,31 +8,11 @@ import java.io.File;
 import java.io.FileNotFoundException;
 
 
-
+/**
+ * Group processor that reads in a file and construct {@link ca.uqac.lif.mmt.parser.Connection}s from each line of the file.
+ */
 public class FileSourceProcessor extends GroupProcessor{
-
-
-    /**
-     * The default constructor listen on every network interfaces and feed the output with received packages.
-     */
-//    public SourceProcessor(){
-//        super(0,1);
-//        try {
-//            // Processor that catches network packages
-//            NetworkInterfaceSource source = new NetworkInterfaceSource("any");
-//
-//
-//
-//
-//        } catch (Exception e) {
-//            System.err.print("Error while opening network interfaces !");
-//            e.printStackTrace();
-//        }
-//    }
-
-
-
-    /**
+     /**
      * Constructor for a file based source.
      * @param filePath The file where are located the packages traces.
      */
