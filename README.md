@@ -18,6 +18,7 @@
 - [ ] Chaine 1 : Bande passante cumulative (Exemple demandé par Sylvain )
 - [ ] Chaine 2 : Cluster en fonction des durées de connexion
 - [ ] Chaîne 3 : Cluster en fonction des heures de la journée 
+- [ ] Chaîne 4 : Cluster en fonction des données échangées et des adresses IP sources et destination 
 
 ## Élements importants à implémenter
 - [ ] Un processeur qui reçoit les données clusterisées (Help massiva) et qui génère une image
