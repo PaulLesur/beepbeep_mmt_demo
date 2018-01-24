@@ -13,8 +13,8 @@ import java.io.FileNotFoundException;
 
 public class DurationExample {
 
-    private static int k = 5;
-    private static int refreshInterval = 5;
+    private static int k = 10;
+    private static int refreshInterval = 100;
 
     public static void main(String args[]) throws FileNotFoundException {
 
