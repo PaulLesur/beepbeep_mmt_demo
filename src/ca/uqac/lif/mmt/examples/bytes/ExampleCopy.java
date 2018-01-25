@@ -2,13 +2,17 @@ package ca.uqac.lif.mmt.examples.bytes;
 
 import ca.uqac.lif.cep.Connector;
 import ca.uqac.lif.cep.Palette;
+import ca.uqac.lif.cep.Pullable;
 import ca.uqac.lif.cep.functions.FunctionProcessor;
 import ca.uqac.lif.cep.mtnp.DrawPlot;
 import ca.uqac.lif.cep.mtnp.UpdateTable;
 import ca.uqac.lif.cep.mtnp.UpdateTableStream;
 import ca.uqac.lif.cep.peg.ml.KMeansFunction;
 import ca.uqac.lif.cep.tmf.Fork;
+import ca.uqac.lif.cep.tmf.Passthrough;
 import ca.uqac.lif.cep.tmf.Pump;
+import ca.uqac.lif.mmt.diagramPalette.MultisetToDataset;
+import ca.uqac.lif.mmt.diagramPalette.ScatterPlotPrinter;
 import ca.uqac.lif.mmt.functions.GetDestinationBytes;
 import ca.uqac.lif.mmt.functions.GetSourceBytes;
 import ca.uqac.lif.mmt.processors.*;
@@ -17,11 +21,11 @@ import ca.uqac.lif.mtnp.plot.gral.Scatterplot;
 
 import java.awt.*;
 
-public class BytesKMeansExample {
+public class ExampleCopy {
 
     private static int k = 20;
     private static int refreshInterval = 100;
-    private static float limit = 10000.0f;
+    private static float limit = 100000.0f;
 
     public static void main(String args[]) {
 
@@ -56,49 +60,30 @@ public class BytesKMeansExample {
 
         Connector.connect(setBuilder, fp);
 
-
-        // On convertit en table exploitable
-        MultisetToTableProcessor table = new MultisetToTableProcessor(1, "x", "y");
-        Connector.connect(fp, table);
-
-        Scatterplot scatterplot = new Scatterplot();
-        scatterplot.withLines(false);
-//        scatterplot.setPalette(Plot.QUALITATIVE_1);
-
-
-        DrawPlot draw = new DrawPlot(scatterplot);
-
-        Connector.connect(table, draw);
-
-        BitmapJFrame window = new BitmapJFrame();
+        MultisetToDataset dataSetBuilder = new MultisetToDataset();
+        Connector.connect(fp,dataSetBuilder);
 
         Pump pump = new Pump();
+        ScatterPlotPrinter printer = new ScatterPlotPrinter();
 
-        Connector.connect(draw, pump);
-        Connector.connect(pump,window);
+        Connector.connect(dataSetBuilder, pump, printer);
+
+        Pullable p = fp.getPullableOutput();
+
+        while(true){
+            pump.run();
+        }
+
+//        System.out.println("Traitement terminé");
 
 
 
-//
-//        Pullable p = table.getPullableOutput();
+//        Pullable p = printer.getPullableOutput();
 //        while (p.hasNext()){
-//            System.out.println(p.pull());
+////            System.out.println("OUT : "+p.pull());
 //            p.pull();
 //
 //        }
-
-
-
-
-        window.start();
-
-
-        System.out.println("Displaying plot. Press Ctrl+C or close the window to end.");
-        while(true){
-            pump.run();
-//            Thread.sleep(1000);
-//            System.out.println("ERG");
-        }
 
 
 
