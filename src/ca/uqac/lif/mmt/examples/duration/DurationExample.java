@@ -35,6 +35,8 @@ public class DurationExample {
         KMeansFunction kmf = new KMeansSmartFunction(k);
         FunctionProcessor fp = new FunctionProcessor(kmf);
 
+
+        // Setting up a printer to print data
         ClustersDataFormatter dataFormatter = new ClustersDataFormatter();
         Pump pump = new Pump();
         ScatterPlotGenerator plotGenerator = new ScatterPlotGenerator("Durations", "Duration of the connection", "", "duration.png");

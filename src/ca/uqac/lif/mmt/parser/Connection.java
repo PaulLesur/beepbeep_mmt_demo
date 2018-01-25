@@ -157,4 +157,9 @@ public class Connection {
     public String getProtocol() {
         return protocol;
     }
+
+    public int getHour(){
+        String hour = this.getStartTime().split(":")[0];
+        return Integer.parseInt(hour);
+    }
 }
