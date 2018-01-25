@@ -1,26 +1,13 @@
 package ca.uqac.lif.mmt.examples.bytes;
 
 import ca.uqac.lif.cep.Connector;
-import ca.uqac.lif.cep.Palette;
-import ca.uqac.lif.cep.Pullable;
 import ca.uqac.lif.cep.functions.FunctionProcessor;
-import ca.uqac.lif.cep.mtnp.DrawPlot;
-import ca.uqac.lif.cep.mtnp.UpdateTable;
-import ca.uqac.lif.cep.mtnp.UpdateTableStream;
-import ca.uqac.lif.cep.peg.ml.KMeansFunction;
 import ca.uqac.lif.cep.tmf.Fork;
-import ca.uqac.lif.cep.tmf.Passthrough;
 import ca.uqac.lif.cep.tmf.Pump;
-import ca.uqac.lif.mmt.diagramPalette.MultisetToDataset;
-import ca.uqac.lif.mmt.diagramPalette.ScatterPlotPrinter;
 import ca.uqac.lif.mmt.functions.GetDestinationBytes;
 import ca.uqac.lif.mmt.functions.GetSourceBytes;
 import ca.uqac.lif.mmt.functions.KMeansSmartFunction;
 import ca.uqac.lif.mmt.processors.*;
-import ca.uqac.lif.mtnp.plot.Plot;
-import ca.uqac.lif.mtnp.plot.gral.Scatterplot;
-
-import java.awt.*;
 
 public class BytesKMeansSmartExample {
 
@@ -42,9 +29,6 @@ public class BytesKMeansSmartExample {
         Connector.connect(fork, 0, sourceBytes,0);
         Connector.connect(fork, 1, destinationBytes,0);
 
-//        UpdateTable table = new UpdateTableStream("Sent Bytes","Received Bytes");
-//        Connector.connect(sourceBytes, 0, table, Connector.TOP);
-//        Connector.connect(destinationBytes, 0, table, Connector.BOTTOM);
 
         // On construit une paire qui correspond aux coordonnées
         PairBuilderProcessor pairBuilder = new PairBuilderProcessor();
@@ -57,43 +41,21 @@ public class BytesKMeansSmartExample {
 
         // On applique KMeans
         KMeansSmartFunction kmf2 = new KMeansSmartFunction(k);
-//        KMeansFunction kmf = new KMeansFunction(k);
         FunctionProcessor fp = new FunctionProcessor(kmf2);
 
         Connector.connect(setBuilder, fp);
 
         ClustersDataFormatter dataFormatter = new ClustersDataFormatter();
         Connector.connect(fp,dataFormatter);
-//
+
         Pump pump = new Pump();
-        ScatterPlotPrinter printer = new ScatterPlotPrinter();
-//
+        ScatterPlotGenerator plotGeneratorFunction = new ScatterPlotGenerator("Bytes", "Received bytes", "Sent bytes", "bytes.png");
+        FunctionProcessor printer = new FunctionProcessor(plotGeneratorFunction);
+
         Connector.connect(dataFormatter, pump, printer);
-//
-//        Pullable p = dataFormatter.getPullableOutput();
-//        while (p.hasNext()){
-////            System.out.println("OUT : "+p.pull());
-//            p.pull();
-//
-//        }
-//
+
         while(true){
             pump.run();
         }
-
-//        System.out.println("Traitement terminé");
-
-
-
-//        Pullable p = printer.getPullableOutput();
-
-
-
-
-
-
-
-
     }
-
 }

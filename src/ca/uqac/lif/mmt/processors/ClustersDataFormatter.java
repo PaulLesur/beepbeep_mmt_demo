@@ -46,11 +46,11 @@ public class ClustersDataFormatter  extends SingleProcessor{
                 double x = temp.getPoint()[0];
                 double y = temp.getPoint()[1];
 
-                // We add the DoublePoint in the
+                // We add the DoublePoint to the series, each series corresponds to a cluster.
                 series.add(x, y);
             }
 
-
+            // We add each cluster to the output dataset
             result.addSeries(series);
             counter++;
         }
