@@ -24,44 +24,26 @@ public class KMeansSmartFunction extends KMeansFunction {
     public Set<?> getValue(Set points) {
         //Clustering tool
         KMeansPlusPlusClusterer<DoublePoint> clusterer = new KMeansPlusPlusClusterer(this.m_k);
-        //
         Set<DoublePoint> d_points = new HashSet();
-        // Iterates on each point of the original dataset
-        Iterator iter = points.iterator();
 
-        while(iter.hasNext()) {
-            // Next point
-            Object o = iter.next();
+        // Iterates on each point of the original dataset
+        Iterator iterator1 = points.iterator();
+        while(iterator1.hasNext()) {
+            Object o = iterator1.next();
             // Point is cast to DoublePoint and added to d_points hashset
             d_points.add(DoublePointCast.getDoublePoint(o));
         }
-        // List of clusters OR list of centers ?
+        // List of clusters
         List<CentroidCluster<DoublePoint>> clusters = clusterer.cluster(d_points);
 
         Multiset clustersSet = new Multiset();
-
-        Iterator iterator = clusters.iterator();
-        while (iterator.hasNext())
+        Iterator iterator2 = clusters.iterator();
+        while (iterator2.hasNext())
         {
-            clustersSet.add((CentroidCluster)iterator.next());
+            clustersSet.add((CentroidCluster)iterator2.next());
         }
 
         return clustersSet;
-
-
-        // Empty list of centers
-//        Set<DoublePoint> centers = new HashSet();
-//        // Iterates on each cluster
-//        Iterator var6 = clusters.iterator();
-//
-//        while(var6.hasNext()) {
-//            // Gets the current cluster
-//            CentroidCluster<DoublePoint> cluster = (CentroidCluster)var6.next();
-//            //Adds the center to the list of centers
-//            centers.add((DoublePoint)cluster.getCenter());
-//        }
-//
-//        return centers;
     }
 
 }
