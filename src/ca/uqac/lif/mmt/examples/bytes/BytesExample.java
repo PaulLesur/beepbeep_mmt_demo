@@ -52,20 +52,20 @@ public class BytesExample {
 
 
 
-        DrawPlot draw = new DrawPlot(new ca.uqac.lif.mtnp.plot.gral.Scatterplot());
+//        DrawPlot draw = new DrawPlot(new ca.uqac.lif.mtnp.plot.gral.Scatterplot());
 //        draw.setImageType(Plot.ImageType.PNG);
 
-        Connector.connect(fp, draw);
-
-        BitmapJFrame window = new BitmapJFrame();
-
+//        Connector.connect(fp, draw);
+//
+//        BitmapJFrame window = new BitmapJFrame();
+//
         Pump pump = new Pump();
-
-        Connector.connect(draw, pump);
-        Connector.connect(pump,window);
-
-
-        window.start();
+//
+//        Connector.connect(draw, pump);
+//        Connector.connect(pump,window);
+//
+//
+//        window.start();
 
 
 //        SetBuilderProcessor setBuilder = new SetBuilderProcessor(k);
@@ -76,14 +76,18 @@ public class BytesExample {
 //
 //        Connector.connect(source, durationExtractor, setBuilder, fp);
 
-//        Pullable p = window.getPullableOutput();
+        Pullable p = fp.getPullableOutput();
 
-
-        System.out.println("Displaying plot. Press Ctrl+C or close the window to end.");
-        while(true){
-            pump.run();
-            Thread.sleep(1000);
+        while (p.hasNext()){
+            System.out.println(p.pull().toString());
         }
+
+//
+//        System.out.println("Displaying plot. Press Ctrl+C or close the window to end.");
+//        while(true){
+//            pump.run();
+//            Thread.sleep(1000);
+//        }
 
     }
 
