@@ -4,8 +4,12 @@ import ca.uqac.lif.cep.Connector;
 import ca.uqac.lif.cep.Pullable;
 import ca.uqac.lif.cep.functions.FunctionProcessor;
 import ca.uqac.lif.cep.peg.ml.KMeansFunction;
+import ca.uqac.lif.cep.tmf.Pump;
 import ca.uqac.lif.mmt.functions.GetDuration;
+import ca.uqac.lif.mmt.functions.KMeansSmartFunction;
+import ca.uqac.lif.mmt.processors.ClustersDataFormatter;
 import ca.uqac.lif.mmt.processors.FileSourceProcessor;
+import ca.uqac.lif.mmt.processors.ScatterPlotGenerator;
 import ca.uqac.lif.mmt.processors.SetBuilderProcessor;
 
 
@@ -13,7 +17,7 @@ import java.io.FileNotFoundException;
 
 public class DurationExample {
 
-    private static int k = 10;
+    private static int k = 5;
     private static int refreshInterval = 100;
 
     public static void main(String args[]) throws FileNotFoundException {
@@ -28,17 +32,21 @@ public class DurationExample {
         SetBuilderProcessor setBuilder = new SetBuilderProcessor(k, refreshInterval);
 
         // Creating K-means function
-        KMeansFunction kmf = new KMeansFunction(k);
+        KMeansFunction kmf = new KMeansSmartFunction(k);
         FunctionProcessor fp = new FunctionProcessor(kmf);
 
+        ClustersDataFormatter dataFormatter = new ClustersDataFormatter();
+        Pump pump = new Pump();
+        ScatterPlotGenerator plotGenerator = new ScatterPlotGenerator("Durations", "Duration of the connection", "", "duration.png");
+        FunctionProcessor printer = new FunctionProcessor(plotGenerator);
+
+
         // Building the pipeline
-        Connector.connect(source, durationExtractor, setBuilder, fp);
+        Connector.connect(source, durationExtractor, setBuilder, fp, dataFormatter, pump, printer);
 
 
-        Pullable p = fp.getPullableOutput();
-
-        while(p.hasNext()){
-            System.out.println((p.pull()).toString());
+        while (true){
+            pump.run();
         }
     }
 }

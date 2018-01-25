@@ -44,7 +44,12 @@ public class ClustersDataFormatter  extends SingleProcessor{
             for (int i = 0; i<nbPointsOfCurrentCluster; i++ ){
                 DoublePoint temp = (DoublePoint) currentCluster.getPoints().get(i);
                 double x = temp.getPoint()[0];
-                double y = temp.getPoint()[1];
+                double y = 0;
+                try{
+                     y = temp.getPoint()[1];
+                } catch (ArrayIndexOutOfBoundsException e){ // prevent exception
+                }
+
 
                 // We add the DoublePoint to the series, each series corresponds to a cluster.
                 series.add(x, y);
