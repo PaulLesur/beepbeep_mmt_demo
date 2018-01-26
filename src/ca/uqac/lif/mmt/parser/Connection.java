@@ -162,4 +162,8 @@ public class Connection {
         String hour = this.getStartTime().split(":")[0];
         return Integer.parseInt(hour);
     }
+    public double getMinute(){
+        String minute = this.getStartTime().split(":")[1];
+        return Double.parseDouble(minute);
+    }
 }

@@ -15,7 +15,35 @@ public class PairBuilderProcessor extends SingleProcessor{
     protected boolean compute(Object[] inputs, Queue<Object[]> output) {
 
 //        Object[] o = {("["+inputs[0]+","+inputs[1]+"]")};
-        double[] temp = {(new Double((float)inputs[0])),(new Double((float)inputs[1]))};
+        double[] temp = new double[2];
+
+
+        try{
+            temp[0] = (new Double((float)inputs[0]));
+        }
+        catch (ClassCastException e){
+            try{
+                temp[0] = (new Double((double)inputs[0]));
+            }
+            catch (ClassCastException e2){
+                temp[0] = (new Double((int)inputs[0]));
+            }
+        }
+
+        try{
+            temp[1] = (new Double((float)inputs[1]));
+        } catch (ClassCastException e){
+            try{
+                temp[1] = (new Double((double)inputs[1]));
+            } catch (ClassCastException e2){
+                temp[1] = (new Double((int)inputs[1]));
+            }
+        }
+
+
+//                {(new Double((float)inputs[0])),(new Double((float)inputs[1]))};
+
+
 
         DoublePoint out = new DoublePoint(temp);
 
