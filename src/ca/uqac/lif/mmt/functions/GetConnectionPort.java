@@ -1,40 +1,17 @@
-package ca.uqac.lif.mmt.processors;
+package ca.uqac.lif.mmt.functions;
 
 import ca.uqac.lif.cep.functions.Function;
 import ca.uqac.lif.cep.functions.FunctionException;
 import ca.uqac.lif.cep.functions.SimpleFunction;
+import ca.uqac.lif.mmt.parser.Connection;
+import ca.uqac.lif.mmt.parser.arguments.IpAddress;
 
-import java.util.HashMap;
 import java.util.Set;
 
-public class BucketCounter extends SimpleFunction{
-
-    private int numberOfBuckets;
-    private HashMap<String, Integer> buckets;
-
-    public BucketCounter(int numberOfBuckets){
-        this.numberOfBuckets = numberOfBuckets;
-        this.buckets = new HashMap<>();
-    }
-
+public class GetConnectionPort extends SimpleFunction{
     @Override
     public void compute(Object[] inputs, Object[] outputs) throws FunctionException {
-
-        String bucket = String.valueOf((int) inputs[0]);
-
-//        this.buckets[bucket]++;
-
-        if (this.buckets.get(bucket)!=null){
-            this.buckets.put(bucket, this.buckets.get(bucket) + 1);
-        } else {
-            this.buckets.put(bucket, 1);
-        }
-
-
-
-        outputs[0] = this.buckets;
-
-
+        outputs[0] = ((Connection)inputs[0]).getDestinationPortNumber();
     }
 
     @Override
@@ -54,12 +31,12 @@ public class BucketCounter extends SimpleFunction{
 
     @Override
     public void getInputTypesFor(Set<Class<?>> set, int i) {
-
+        set.add(Connection.class);
     }
 
     @Override
     public Class<?> getOutputTypeFor(int i) {
-        return null;
+        return int.class;
     }
 
     @Override

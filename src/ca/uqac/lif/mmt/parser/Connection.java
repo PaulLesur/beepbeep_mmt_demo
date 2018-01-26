@@ -25,9 +25,9 @@ public class Connection {
     private float shellcodeType;
     private float attackIndicator;
     private IpAddress sourceIpAddress;
-    private float sourcePortNumber;
+    private int sourcePortNumber;
     private IpAddress destinationIpAddress;
-    private float destinationPortNumber;
+    private int destinationPortNumber;
     private String startTime;
     private String protocol;
 
@@ -35,7 +35,7 @@ public class Connection {
 
     }
 
-    public Connection(float connectionDuration, String service, float sourceBytes, float destinationBytes, Float countSameDestinationSameSource, Rate sameServiceRate, Rate synErrorRateCSDSS, Rate serviceSynErrorRate, float countSameDestination, float countSameDestinationSameService, Rate sameSourcePortRate, Rate synErrorRateCSD, Rate synErrorRateServiceCSD, Flag connectionStatus, String intrusionType, String malwareType, float shellcodeType, float attackIndicator, IpAddress sourceIpAddress, float sourcePortNumber, IpAddress destinationIpAddress, float destinationPortNumber, String startTime, String protocol) {
+    public Connection(float connectionDuration, String service, float sourceBytes, float destinationBytes, Float countSameDestinationSameSource, Rate sameServiceRate, Rate synErrorRateCSDSS, Rate serviceSynErrorRate, float countSameDestination, float countSameDestinationSameService, Rate sameSourcePortRate, Rate synErrorRateCSD, Rate synErrorRateServiceCSD, Flag connectionStatus, String intrusionType, String malwareType, float shellcodeType, float attackIndicator, IpAddress sourceIpAddress, int sourcePortNumber, IpAddress destinationIpAddress, int destinationPortNumber, String startTime, String protocol) {
         this.connectionDuration = connectionDuration;
         this.service = service;
         this.sourceBytes = sourceBytes;
@@ -138,7 +138,7 @@ public class Connection {
         return sourceIpAddress;
     }
 
-    public float getSourcePortNumber() {
+    public int getSourcePortNumber() {
         return sourcePortNumber;
     }
 
@@ -146,7 +146,7 @@ public class Connection {
         return destinationIpAddress;
     }
 
-    public float getDestinationPortNumber() {
+    public int getDestinationPortNumber() {
         return destinationPortNumber;
     }
 
