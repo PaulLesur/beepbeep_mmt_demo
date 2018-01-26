@@ -15,12 +15,8 @@
 - [x] Construire un processeur qui reçoit une ligne et construit une `Connection`
 
 ## Exemples de chaines à implémenter
-- [ ] Chaine 1 : Bande passante cumulative (Exemple demandé par Sylvain )
-- [ ] Chaine 2 : Cluster en fonction des durées de connexion
-- [ ] Chaîne 3 : Cluster en fonction des heures de la journée 
+- [ ] Chaîne 1 : Bande passante cumulative (Exemple demandé par Sylvain )
+- [x] Chaîne 2 : Cluster en fonction des durées de connexion
+- [x] Chaîne 3 : Cluster en fonction des heures de la journée 
 - [ ] Chaîne 4 : Cluster en fonction des données échangées et des adresses IP sources et destination 
-
-## Élements importants à implémenter
-- [ ] Un processeur qui reçoit les données clusterisées (Help massiva) et qui génère une image
-- [ ] Un GroupProcessor K-means qui reçoit juste les connexions et les paramètres et qui génère les clusters
-- [ ] ...
+- [x] Chaîne 5 : Distribution des connections sur la journée
