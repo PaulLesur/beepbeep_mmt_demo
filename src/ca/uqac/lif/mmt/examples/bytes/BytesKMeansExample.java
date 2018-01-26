@@ -1,21 +1,15 @@
 package ca.uqac.lif.mmt.examples.bytes;
 
 import ca.uqac.lif.cep.Connector;
-import ca.uqac.lif.cep.Palette;
 import ca.uqac.lif.cep.functions.FunctionProcessor;
 import ca.uqac.lif.cep.mtnp.DrawPlot;
-import ca.uqac.lif.cep.mtnp.UpdateTable;
-import ca.uqac.lif.cep.mtnp.UpdateTableStream;
 import ca.uqac.lif.cep.peg.ml.KMeansFunction;
 import ca.uqac.lif.cep.tmf.Fork;
 import ca.uqac.lif.cep.tmf.Pump;
 import ca.uqac.lif.mmt.functions.GetDestinationBytes;
 import ca.uqac.lif.mmt.functions.GetSourceBytes;
 import ca.uqac.lif.mmt.processors.*;
-import ca.uqac.lif.mtnp.plot.Plot;
 import ca.uqac.lif.mtnp.plot.gral.Scatterplot;
-
-import java.awt.*;
 
 public class BytesKMeansExample {
 

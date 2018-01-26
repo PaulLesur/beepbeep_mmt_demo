@@ -9,19 +9,32 @@ import ca.uqac.lif.mmt.processors.BucketCounter;
 import ca.uqac.lif.mmt.processors.FileSourceProcessor;
 import ca.uqac.lif.mmt.processors.StackerProcessor;
 
+/**
+ * An example of BeepBeep's usage in data mining: a distribution of the duration of each connection event of a log file.
+ * <p>
+ *  The duration of each connection goes through the chain of processors.
+ *  a PNG image is then generated to display the resulting distribution on a graph.
+ * </p>
+ * <p>
+ *  This example illustrates the use of {@link BarChartGenerator} object.
+ * </p>
+ * <p>
+ *  Represented graphically, this example corresponds to the following chain of processors:
+ * </p>
+ * <p>
+ *  <img src="{@docRoot}/img/MMT-BytesKMeansExample.png" alt="Processor graph">
+ * </p>
+ */
 public class ConnectionCounterExample {
 
     public static void main(String args[]){
-
-
-
-        // Extracting data from source file
+        /* Extracting data from source file */
         FileSourceProcessor source = new FileSourceProcessor("./data/2006/11/20061101.txt");
 
-        // Getting hour of connection
+        /* Getting hour of connection */
         FunctionProcessor hourGetter = new FunctionProcessor(new GetConnectionHour());
 
-        // Counting occurrences of hours
+        /* Counting occurrences of hours */
         FunctionProcessor counter = new FunctionProcessor(new BucketCounter(25));
 
         StackerProcessor stacker = new StackerProcessor(100);
