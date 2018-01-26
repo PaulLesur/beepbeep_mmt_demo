@@ -21,3 +21,12 @@
 
 ## Données 
 Les données utilisées pour les différents exemples sont extraites des [benchmarks effectués](http://www.takakura.com/Kyoto_data/BenchmarkData-Description-v5.pdf) par l'Université de Kyoto.
+
+
+## Exemples de sorties 
+![Bytes Clustering](/img/outputs/bytesClustering.png)
+![Bytes Duration Clustering](/img/outputs/durationBytes.png)
+![Hour Duration Clustering](/img/outputs/hourDuration.png)
+![Ports Distribution](/img/outputs/ports.png)
+![Hours Distribution](/img/outputs/hours.png)
+![Duration Clustering](/img/outputs/duraiton.png)
