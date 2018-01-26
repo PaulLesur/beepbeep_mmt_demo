@@ -24,9 +24,9 @@ Les données utilisées pour les différents exemples sont extraites des [benchm
 
 
 ## Exemples de sorties 
-![Bytes Clustering](/img/outputs/bytesClustering.png)
-![Bytes Duration Clustering](/img/outputs/durationBytes.png)
-![Hour Duration Clustering](/img/outputs/hourDuration.png)
-![Ports Distribution](/img/outputs/ports.png)
-![Hours Distribution](/img/outputs/hours.png)
-![Duration Clustering](/img/outputs/duraiton.png)
+![Bytes Clustering](./img/outputs/bytesClustering.png)
+![Bytes Duration Clustering](./img/outputs/durationBytes.png)
+![Hour Duration Clustering](./img/outputs/hourDuration.png)
+![Ports Distribution](./img/outputs/ports.png)
+![Hours Distribution](./img/outputs/hours.png)
+![Duration Clustering](./img/outputs/duraiton.png)
