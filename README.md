@@ -12,11 +12,12 @@
 
 
 ## Exemples présents sur le dépôt
-- [x] Chaîne 1 : Cluster en fonction des durées de connexion
-- [x] Chaîne 2 : Cluster en fonction des heures de la journée 
-- [ ] Chaîne 3 : Cluster en fonction des données échangées et des adresses IP sources et destination 
+- [x] Chaîne 1 : Clustering en fonction des durées de connexion
+- [x] Chaîne 2 : Clustering en fonction des bytes émis et reçus 
+- [x] Chaîne 3 : Clustering en fonction des heures de la journée et durées des connexions
 - [x] Chaîne 4 : Distribution des connexions sur la journée
 - [x] Chaîne 5 : Distribution des connexions en fonction du port
+- [x] Chaîne 6 : Clustering des données par rapport à la durée des connexions
 
 ## Données 
 Les données utilisées pour les différents exemples sont extraites des [benchmarks effectués](http://www.takakura.com/Kyoto_data/BenchmarkData-Description-v5.pdf) par l'Université de Kyoto.
