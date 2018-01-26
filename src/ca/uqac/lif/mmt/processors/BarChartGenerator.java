@@ -51,8 +51,6 @@ public class BarChartGenerator extends SingleProcessor{
 
         }
 
-        
-
         JFreeChart barChart = ChartFactory.createBarChart(
                 this.title,
                 this.xAxis,

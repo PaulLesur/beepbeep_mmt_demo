@@ -1,4 +1,4 @@
-package ca.uqac.lif.mmt.examples.chaine1;
+package ca.uqac.lif.mmt.examples.cumulativeBandwidth;
 
 import ca.uqac.lif.cep.GroupProcessor;
 import ca.uqac.lif.cep.functions.*;
