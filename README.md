@@ -29,4 +29,4 @@ Les données utilisées pour les différents exemples sont extraites des [benchm
 ![Hour Duration Clustering](./img/outputs/hourDuration.png)
 ![Ports Distribution](./img/outputs/ports.png)
 ![Hours Distribution](./img/outputs/hours.png)
-![Duration Clustering](./img/outputs/duraiton.png)
+![Duration Clustering](./img/outputs/duration.png)
