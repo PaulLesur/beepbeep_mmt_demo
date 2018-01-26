@@ -1,4 +1,4 @@
-package ca.uqac.lif.mmt.examples.connectionCounter;
+package ca.uqac.lif.mmt.examples.distributions;
 
 import ca.uqac.lif.cep.Connector;
 import ca.uqac.lif.cep.functions.FunctionProcessor;

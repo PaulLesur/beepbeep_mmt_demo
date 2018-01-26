@@ -27,9 +27,9 @@ import ca.uqac.lif.mmt.processors.*;
 
 /**
  * An example of BeepBeep's usage in data mining: an application of improved K-Means algorithm on source and
- * destination bytes in a connection log.
+ * destination bytesClustering in a connection log.
  * <p>
- *  The number of bytes sent and received for each analyzed connection go through the K-Means clustering algorithm,
+ *  The number of bytesClustering sent and received for each analyzed connection go through the K-Means clustering algorithm,
  *  a PNG image is then generated to display the resulting clusters on a graph.
  * </p>
  * <p>
@@ -81,7 +81,7 @@ public class DurationBytesExample {
         Connector.connect(fp,dataFormatter);
 
         Pump pump = new Pump();
-        ScatterPlotGenerator plotGeneratorFunction = new ScatterPlotGenerator("DurationBytes", "Duration", "Received bytes", "durationBytes.png");
+        ScatterPlotGenerator plotGeneratorFunction = new ScatterPlotGenerator("DurationBytes", "Duration", "Received bytesClustering", "durationBytes.png");
         FunctionProcessor printer = new FunctionProcessor(plotGeneratorFunction);
 
         Connector.connect(dataFormatter, pump, printer);

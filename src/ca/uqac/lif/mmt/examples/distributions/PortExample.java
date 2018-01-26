@@ -1,10 +1,9 @@
-package ca.uqac.lif.mmt.examples.connectionCounter;
+package ca.uqac.lif.mmt.examples.distributions;
 
 import ca.uqac.lif.cep.Connector;
 import ca.uqac.lif.cep.functions.FunctionProcessor;
 import ca.uqac.lif.cep.tmf.CountDecimate;
 import ca.uqac.lif.cep.tmf.Pump;
-import ca.uqac.lif.mmt.functions.GetConnectionHour;
 import ca.uqac.lif.mmt.functions.GetConnectionPort;
 import ca.uqac.lif.mmt.processors.BarChartGenerator;
 import ca.uqac.lif.mmt.processors.BucketCounter;

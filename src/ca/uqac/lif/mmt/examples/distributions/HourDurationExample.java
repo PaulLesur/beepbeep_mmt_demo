@@ -13,22 +13,20 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ca.uqac.lif.mmt.examples.bytes;
+package ca.uqac.lif.mmt.examples.bytesClustering;
 
 import ca.uqac.lif.cep.Connector;
 import ca.uqac.lif.cep.functions.FunctionProcessor;
 import ca.uqac.lif.cep.tmf.Fork;
 import ca.uqac.lif.cep.tmf.Pump;
-import ca.uqac.lif.mmt.functions.GetDestinationBytes;
-import ca.uqac.lif.mmt.functions.GetSourceBytes;
-import ca.uqac.lif.mmt.functions.KMeansSmartFunction;
+import ca.uqac.lif.mmt.functions.*;
 import ca.uqac.lif.mmt.processors.*;
 
 /**
  * An example of BeepBeep's usage in data mining: an application of improved K-Means algorithm on source and
- * destination bytes in a connection log.
+ * destination bytesClustering in a connection log.
  * <p>
- *  The number of bytes sent and received for each analyzed connection go through the K-Means clustering algorithm,
+ *  The number of bytesClustering sent and received for each analyzed connection go through the K-Means clustering algorithm,
  *  a PNG image is then generated to display the resulting clusters on a graph.
  * </p>
  * <p>
@@ -41,7 +39,7 @@ import ca.uqac.lif.mmt.processors.*;
  *  <img src="{@docRoot}/img/MMT-BytesKMeansExample.png" alt="Processor graph">
  * </p>
  */
-public class BytesKMeansSmartExample {
+public class HourDurationExample {
 
     private static int k = 5;
     private static int refreshInterval = 100;
@@ -56,8 +54,8 @@ public class BytesKMeansSmartExample {
         Connector.connect(source, filter, fork);
 
         /* Extraction of the parameters of interest */
-        FunctionProcessor sourceBytes = new FunctionProcessor(new GetSourceBytes());
-        FunctionProcessor destinationBytes= new FunctionProcessor(new GetDestinationBytes());
+        FunctionProcessor sourceBytes = new FunctionProcessor(new GetConnectionHourMinute());
+        FunctionProcessor destinationBytes= new FunctionProcessor(new GetDuration());
         Connector.connect(fork, 0, sourceBytes,0);
         Connector.connect(fork, 1, destinationBytes,0);
 
@@ -80,7 +78,7 @@ public class BytesKMeansSmartExample {
         Connector.connect(fp,dataFormatter);
 
         Pump pump = new Pump();
-        ScatterPlotGenerator plotGeneratorFunction = new ScatterPlotGenerator("Bytes", "Received bytes", "Sent bytes", "bytes.png");
+        ScatterPlotGenerator plotGeneratorFunction = new ScatterPlotGenerator("Duration&Hour", "Hour", "Duration", "hourDuration.png");
         FunctionProcessor printer = new FunctionProcessor(plotGeneratorFunction);
 
         Connector.connect(dataFormatter, pump, printer);
