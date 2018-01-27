@@ -1,3 +1,17 @@
+/*
+    BeepBeep, an event stream processor
+    Copyright (C) 2008-2018 Sylvain Hallé
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Lesser General Public License as published
+    by the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Lesser General Public License for more details.
+    You should have received a copy of the GNU Lesser General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package ca.uqac.lif.mmt.processors;
 
 import ca.uqac.lif.cep.functions.Function;
@@ -9,11 +23,9 @@ import java.util.Set;
 
 public class BucketCounter extends SimpleFunction{
 
-    private int numberOfBuckets;
     private HashMap<String, Integer> buckets;
 
-    public BucketCounter(int numberOfBuckets){
-        this.numberOfBuckets = numberOfBuckets;
+    public BucketCounter(){
         this.buckets = new HashMap<>();
     }
 
@@ -22,7 +34,6 @@ public class BucketCounter extends SimpleFunction{
 
         String bucket = String.valueOf((int) inputs[0]);
 
-//        this.buckets[bucket]++;
 
         if (this.buckets.get(bucket)!=null){
             this.buckets.put(bucket, this.buckets.get(bucket) + 1);

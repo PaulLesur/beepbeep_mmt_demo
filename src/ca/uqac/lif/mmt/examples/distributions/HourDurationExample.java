@@ -13,7 +13,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ca.uqac.lif.mmt.examples.bytesClustering;
+package ca.uqac.lif.mmt.examples.distributions;
 
 import ca.uqac.lif.cep.Connector;
 import ca.uqac.lif.cep.functions.FunctionProcessor;
@@ -23,10 +23,10 @@ import ca.uqac.lif.mmt.functions.*;
 import ca.uqac.lif.mmt.processors.*;
 
 /**
- * An example of BeepBeep's usage in data mining: an application of improved K-Means algorithm on source and
- * destination bytesClustering in a connection log.
+ * An example of BeepBeep's usage in data mining: an application of improved K-Means algorithm on
+ * connection duration per hour in a connection log.
  * <p>
- *  The number of bytesClustering sent and received for each analyzed connection go through the K-Means clustering algorithm,
+ *  The time of connection and the duration for each analyzed connection go through the K-Means clustering algorithm,
  *  a PNG image is then generated to display the resulting clusters on a graph.
  * </p>
  * <p>
@@ -36,7 +36,7 @@ import ca.uqac.lif.mmt.processors.*;
  *  Represented graphically, this example corresponds to the following chain of processors:
  * </p>
  * <p>
- *  <img src="{@docRoot}/img/MMT-BytesKMeansExample.png" alt="Processor graph">
+ *  <img src="{@docRoot}/img/MMT-DurationHour.png" alt="Processor graph">
  * </p>
  */
 public class HourDurationExample {
@@ -54,15 +54,15 @@ public class HourDurationExample {
         Connector.connect(source, filter, fork);
 
         /* Extraction of the parameters of interest */
-        FunctionProcessor sourceBytes = new FunctionProcessor(new GetConnectionHourMinute());
-        FunctionProcessor destinationBytes= new FunctionProcessor(new GetDuration());
-        Connector.connect(fork, 0, sourceBytes,0);
-        Connector.connect(fork, 1, destinationBytes,0);
+        FunctionProcessor connectionTime = new FunctionProcessor(new GetConnectionHourMinute());
+        FunctionProcessor duration= new FunctionProcessor(new GetDuration());
+        Connector.connect(fork, 0, connectionTime,0);
+        Connector.connect(fork, 1, duration,0);
 
         /* Building a pair/coordinates object */
         PairBuilderProcessor pairBuilder = new PairBuilderProcessor();
-        Connector.connect(sourceBytes, 0, pairBuilder, 0);
-        Connector.connect(destinationBytes, 0, pairBuilder, 1);
+        Connector.connect(connectionTime, 0, pairBuilder, 0);
+        Connector.connect(duration, 0, pairBuilder, 1);
 
         /* Building a data set that will be usable by KMeans function */
         SetBuilderProcessor setBuilder = new SetBuilderProcessor(k, refreshInterval);

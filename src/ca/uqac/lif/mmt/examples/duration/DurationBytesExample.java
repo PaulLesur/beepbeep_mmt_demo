@@ -26,10 +26,10 @@ import ca.uqac.lif.mmt.functions.KMeansSmartFunction;
 import ca.uqac.lif.mmt.processors.*;
 
 /**
- * An example of BeepBeep's usage in data mining: an application of improved K-Means algorithm on source and
- * destination bytesClustering in a connection log.
+ * An example of BeepBeep's usage in data mining: an application of improved K-Means algorithm on connection duration
+ * and number of sent bytes in a connection log.
  * <p>
- *  The number of bytesClustering sent and received for each analyzed connection go through the K-Means clustering algorithm,
+ *  The number of sent bytes and the duration for each analyzed connection go through the K-Means clustering algorithm,
  *  a PNG image is then generated to display the resulting clusters on a graph.
  * </p>
  * <p>
@@ -39,7 +39,7 @@ import ca.uqac.lif.mmt.processors.*;
  *  Represented graphically, this example corresponds to the following chain of processors:
  * </p>
  * <p>
- *  <img src="{@docRoot}/img/MMT-BytesKMeansExample.png" alt="Processor graph">
+ *  <img src="{@docRoot}/img/MMT-DurationBytes.png" alt="Processor graph">
  * </p>
  */
 public class DurationBytesExample {
@@ -57,15 +57,15 @@ public class DurationBytesExample {
         Connector.connect(source, filter, fork);
 
         /* Extraction of the parameters of interest */
-        FunctionProcessor sourceBytes = new FunctionProcessor(new GetDuration());
-        FunctionProcessor destinationBytes= new FunctionProcessor(new GetSourceBytes());
-        Connector.connect(fork, 0, sourceBytes,0);
-        Connector.connect(fork, 1, destinationBytes,0);
+        FunctionProcessor duration = new FunctionProcessor(new GetDuration());
+        FunctionProcessor sourceBytes= new FunctionProcessor(new GetSourceBytes());
+        Connector.connect(fork, 0, duration,0);
+        Connector.connect(fork, 1, sourceBytes,0);
 
         /* Building a pair/coordinates object */
         PairBuilderProcessor pairBuilder = new PairBuilderProcessor();
-        Connector.connect(sourceBytes, 0, pairBuilder, 0);
-        Connector.connect(destinationBytes, 0, pairBuilder, 1);
+        Connector.connect(duration, 0, pairBuilder, 0);
+        Connector.connect(sourceBytes, 0, pairBuilder, 1);
 
         /* Building a data set that will be usable by KMeans function */
         SetBuilderProcessor setBuilder = new SetBuilderProcessor(k, refreshInterval);
@@ -81,7 +81,8 @@ public class DurationBytesExample {
         Connector.connect(fp,dataFormatter);
 
         Pump pump = new Pump();
-        ScatterPlotGenerator plotGeneratorFunction = new ScatterPlotGenerator("DurationBytes", "Duration", "Received bytesClustering", "durationBytes.png");
+        ScatterPlotGenerator plotGeneratorFunction =
+                new ScatterPlotGenerator("DurationBytes", "Duration", "Received bytesClustering", "durationBytes.png");
         FunctionProcessor printer = new FunctionProcessor(plotGeneratorFunction);
 
         Connector.connect(dataFormatter, pump, printer);
